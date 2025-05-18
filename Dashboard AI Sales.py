@@ -17,7 +17,7 @@ st.set_page_config(page_title="AI Sales Insights Dashboard", layout="wide")
  
 # Load and cache data
 st.title("📊 AI Sales Insights Dashboard")
-data_path = r"C:\Users\onkab\OneDrive - Botswana Accountancy College\AI Sales (new)\AI_Sales_Insights_.csv"  # Make sure this file is in the same directory as this script
+data_path = r"C:\Users\onkab\OneDrive - Botswana Accountancy College\AI Sales (new)\AI-Sales-Dashboard\AI-sales\AI_Sales_Insights_.csv"
 
 try:
     df = pd.read_csv(data_path)
