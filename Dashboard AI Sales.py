@@ -1,15 +1,18 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
+import pandas as pd
+import plotly.express as px
 import joblib
- 
-# Load AI models
+
+# ✅ Load all models
 reg_model = joblib.load("demo_regression_model.pkl")
-clf_model = joblib.load("interaction_classifier.pkl")
- 
-# Load binary interaction model
+clf_model = joblib.load("interaction_classifier.pkl")  # <--- This was missing
 binary_model = joblib.load("binary_interaction_classifier.pkl")
- 
+
+
+
 st.set_page_config(page_title="AI Sales Insights Dashboard", layout="wide")
  
 # Load and cache data
@@ -139,25 +142,6 @@ elif page == "Session & Campaign Insights":
         else:
             st.warning("Sale Made column is missing or misformatted.")
  
-elif page == "AI Predictions":
-    st.subheader("🧠 AI Model Predictions")
- 
-    col1, col2 = st.columns(2)
- 
-    # 👉 REGRESSION: Predict demo requests
-    with col1:
-        st.markdown("### 📈 Predict Demo Requests")
-        with st.form("regression_form"):
-            day = st.number_input("Day", min_value=1, max_value=31, value=15)
-            month = st.number_input("Month", min_value=1, max_value=12, value=5)
-            year = st.number_input("Year", min_value=2023, max_value=2025, value=2025)
-            dow = st.number_input("Day of Week (0 = Mon, 6 = Sun)", min_value=0, max_value=6, value=2)
-            reg_submit = st.form_submit_button("Predict Demo Volume")
- 
-        if reg_submit:
-            demo_pred = reg_model.predict([[day, month, year, dow]])
-            st.success(f"📊 Predicted Demo Requests: {int(demo_pred[0])}")
-
 elif page == "AI Predictions":
     st.subheader("🧠 AI Model Predictions")
 
